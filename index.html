@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+    <div id="container" class="main">
+        <h1>My List</h1>
+        <ul id="myList">
+            <li id="first" class="item">list-1 Lorem ipsum</li>
+            <li id="second" class="item">list-2 Ipsam in</li>
+            <li class="item">list-3 Dignissimos, obcaecati</li>
+            <li class="item">list-4 Doloribus maxime</li>
+            <li class="item">list-5 Doloremque quasi</li>
+        </ul>
+        <button id="btn">Add New</button>
+        <p style="margin-top: 20px;">In the above code, there are 5 elements in ul>li.</p>
+        <p>We add eventHandler for delete li element when click on it.</p>
+        <p> Then we add a button named Add New and when we click a new li item added to ul.</p>
+        <p>But when we click on the new li, it is not deleted or delete eventHandler is not added to the new li.</p>
+        <p><b>So in this case we need event bubble to handle this problem.</b></p>
+    </div>
+
+    <script>
+        var items = document.getElementsByClassName('item')
+        for (let i = 0; i < items.length; i++) {
+            var item = items[i];
+            item.addEventListener('click', function() {
+                event.target.parentNode.removeChild(event.target)
+            })
+        }
+        var addNew = document.getElementById('btn')
+        addNew.addEventListener('click', function() {
+            var itemParents = document.getElementById('myList')
+            var newItem = document.createElement('li')
+            newItem.innerText = 'brand new item'
+            itemParents.appendChild(newItem)
+        })
+    </script>
+</body>
+</html>
